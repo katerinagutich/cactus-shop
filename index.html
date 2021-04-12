@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pick your Cactus</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="app" v-cloak>
+
+    <div class="product">
+
+        <div class="product-image">
+            <img :src="productImage" :alt="altText">
+        </div>
+
+        <div class="product-info">
+
+            <h1>{{productName}}</h1>
+            <p class="product-price">$ {{finalPrice / 100}}
+                <span v-if="additionalCost"> + $ {{additionalCost}}.00</span>
+                <span v-if="selectedCards.length >= 5" class="discount"> - $ 1.00 as a discount :)</span>
+            </p>
+
+            <p class="product-stock" v-if="quantity > 20">In Stock</p>
+            <p class="product-stock" v-else-if="quantity > 10">Almost sold out!</p>
+            <p class="product-stock" v-else>Out of Stock</p>
+
+            <p>{{productDescription}}</p>
+            <hr>
+
+
+            <!-- Greeting Cards -->
+
+            <p class="cards-heading">Add your Greeting Card:
+                <span v-for="name in selectedCards">{{name}}</span>
+            </p>
+            <div class="cards">
+                <div v-for="(card, i) in cards" @click="addCard(i)" :key="card" >
+                    <div>
+                        <img :src="card.image" alt="card" :class="cards[i].selected ? 'selected' : 'unselected'">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Shopping Cart -->
+
+            <p v-if="cart <= 10" class="cart-heading">You can order up to 10 cacti, go ahead:</p>
+            <p v-if="cart > 10" class="cart-heading cart-heading-warning">Sorry, that's too much, please order up to 10 cacti:</p>
+            <div class="cart">
+                <input type="text" v-model="cart" @change="checkCart()">
+                <button class="cart-remove" @click="removeProduct()">-</button>
+                <button class="cart-add" @click="addProduct()">+</button>
+            </div>
+            <a class="btn" href="#" @click="">Add to cart</a>
+
+        </div>
+    </div>
+
+
+    <!-- Product Description -->
+
+    <div class="product-description">
+        <h2>{{productName}}</h2>
+        <p>
+            "Fairytale castle", Fairy castle" or "Green finger" cactus is the evocative name by which this common succulent plant is marketed and refers to the numerous vertical stems of different heights that resemble spires and turrets. Fairy Castle Cactus grows well on its own roots and will form quite large clumps of several hundreds offsets, if given time and grown properly. Growing fairy castle cactus inside your home is an easy beginning gardener project. It needs plenty of space for its roots. Use pot with good drainage. Bright, warm window seat in summer enjoy being outdoors, but slowly get used to the sun. Place the little cactus in a bright sunny location that is away from drafts or air conditioning.
+        </p>
+        <ul class="list">
+            <li v-for="detail in details">{{ detail }}</li>
+        </ul>
+
+    </div>
+
+</div>
+
+
+<script src="https://unpkg.com/vue@next"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
