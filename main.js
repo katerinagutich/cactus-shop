@@ -8,18 +8,18 @@ const App = {
         productPrice: 1099,
         finalPrice: 1099,
         additionalCost: 0,
-        quantity: 14,
+        stockQuantity: 14,
         cart: 1,
         selectedCards: [],
         details: ['Minimum avg. temperature: 10°C', 'Origin: Garden origin', 'Sun exposure: bright light, and some direct sun, but avoid direct afternoon sun in summer'],
         cards: [
             {
-                image: 'images/birthday.png',
+                image: "./images/birthday.png",
                 selected: false,
                 name: "Happy Birthday! "
             },
             {
-                image: 'images/hello.png',
+                image: "images/hello.png",
                 selected: false,
                 name: "Hello! "
             },
