@@ -2,7 +2,7 @@ const App = {
     data: () => ({
         productName: "Acanthocereus tetragonus Fairy Castle Cactus",
         productDescription: 'This plant comes in a 3.5 inch pot. You will receive a similar plant in size and shape to the ones in the pictures. Our plants are hand-picked and carefully selected to bring you the best quality possible.',
-        productImage: 'images/cactus.png',
+        productImage: 'images/cactus.PNG',
         altText: 'cactus',
         link: 'https://planetdesert.com/',
         productPrice: 1099,
@@ -14,52 +14,52 @@ const App = {
         details: ['Minimum avg. temperature: 10°C', 'Origin: Garden origin', 'Sun exposure: bright light, and some direct sun, but avoid direct afternoon sun in summer'],
         cards: [
             {
-                image: "./images/birthday.png",
+                image: "images/birthday.PNG",
                 selected: false,
                 name: "Happy Birthday! "
             },
             {
-                image: "images/hello.png",
+                image: "images/hello.PNG",
                 selected: false,
                 name: "Hello! "
             },
             {
-                image: 'images/love.png',
+                image: 'images/love.PNG',
                 selected: false,
                 name: "Love You! "
             },
             {
-                image: 'images/thanks.png',
+                image: 'images/thanks.PNG',
                 selected: false,
                 name: "Thank You! "
             },
             {
-                image: 'images/valentine.png',
+                image: 'images/valentine.PNG',
                 selected: false,
                 name: "Happy Valentine's Day! "
             },
             {
-                image: 'images/wish.png',
+                image: 'images/wish.PNG',
                 selected: false,
                 name: "Wish You Were Here! "
             },
             {
-                image: 'images/miss.png',
+                image: 'images/miss.PNG',
                 selected: false,
                 name: "Miss You! "
             },
             {
-                image: 'images/congrats.png',
+                image: 'images/congrats.PNG',
                 selected: false,
                 name: "Congratulations! "
             },
             {
-                image: 'images/holiday.png',
+                image: 'images/holiday.PNG',
                 selected: false,
                 name: "Happy Holiday! "
             },
             {
-                image: 'images/nocard.png',
+                image: 'images/nocard.PNG',
                 selected: false,
                 name: ""
             }
