@@ -3,7 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pick your Cactus</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet/less" type="text/css" href="styles.less">
+    <script src="less.js"></script>
 </head>
 <body>
 
@@ -11,8 +12,14 @@
 
     <div class="product">
 
-        <div class="product-image">
-            <img :src="productImage" :alt="altText">
+        <div class="product-images">
+            <img :src="productImage" :alt="altImageText" class="main-product-image">
+            <div class="secondary-product-image">
+                <img src="images/cactus2.jpeg" :alt="altImageText">
+                <img src="images/cactus3.jpg" :alt="altImageText">
+                <img src="images/cactus4.jpg" :alt="altImageText">
+                <img src="images/cactus.PNG" :alt="altImageText">
+            </div>
         </div>
 
         <div class="product-info">
@@ -73,6 +80,7 @@
     </div>
 
 </div>
+
 
 <script src="https://unpkg.com/vue@next"></script>
 <script src="main.js"></script>

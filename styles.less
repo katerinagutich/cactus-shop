@@ -1,3 +1,6 @@
+@block-shadow: 0 0 15px #949393;;
+@orange-color: #e67e22;
+
 [v-cloak] {
     display: none;
 }
@@ -24,18 +27,18 @@ body {
 .main-product-image  {
     display: block;
     width: 100%;
-    box-shadow: 0 0 15px #949393;
+    box-shadow: @block-shadow;
     margin-bottom: 20px;
 }
 .secondary-product-image {
     display: flex;
     justify-content: space-between;
-}
-.secondary-product-image img {
-    width: 20%;
-}
-.secondary-product-image img:hover {
-    box-shadow: 0 0 15px #949393;
+    img {
+        width: 20%;
+        &:hover {
+            box-shadow: @block-shadow;
+        }
+    }
 }
 .product-info {
     width: 50%;
@@ -51,7 +54,7 @@ body {
 }
 .product-stock {
     font: 18px "Helvetica Neue";
-    color: #e67e22;
+    color: @orange-color;
     margin: 5px 0;
 }
 .product-description {
@@ -62,32 +65,40 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-.cards img {
-    margin: 7px;
-    transition: .5s;
-    transition-property: box-shadow;
+    img {
+        margin: 7px;
+        transition: .5s;
+        transition-property: box-shadow;
+        &:hover {
+            box-shadow: @block-shadow;
+        }
+    }
 }
 .selected {
-    outline: 2px solid #e67e22;
+    outline: 2px solid @orange-color;
 }
 .unselected {
     outline: none;
 }
-.cards img:hover {
-    box-shadow: 0 0 15px #949393;
-}
 .cards-heading {
     font: 17px 'Courier New', sans-serif;
     height: 50px;
-}
-.cards-heading span {
-    font-weight: 600;
+    span {
+        font-weight: 600;
+    }
 }
 .cart {
     position: relative;
     width: 100px;
     margin-bottom: 20px;
+    input {
+        border: 1px solid #C4C4C4;
+        max-width: 90px;
+        height: 40px;
+        text-align: center;
+        z-index: 1;
+        color: @orange-color;
+    }
 }
 .cart-heading {
     font: 17px 'Courier New', sans-serif;
@@ -95,15 +106,7 @@ body {
     margin-bottom: 5px;
 }
 .cart-heading-warning {
-    color: #e67e22;
-}
-.cart input {
-    border: 1px solid #C4C4C4;
-    max-width: 90px;
-    height: 40px;
-    text-align: center;
-    z-index: 1;
-    color: #e67e22;
+    color: @orange-color;
 }
 .cart-remove,
 .cart-add {
@@ -130,14 +133,11 @@ body {
     color: black;
     transition: all .5s;
     text-transform: uppercase;
+    &:hover {
+        color: @orange-color;
+        box-shadow: @block-shadow;
+    }
 }
-.btn:hover {
-    color: #e67e22;
-    box-shadow: 0 0 15px #949393;
-}
-
-
-
 .list {
     list-style: none;
     padding: 0;

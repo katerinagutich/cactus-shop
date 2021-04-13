@@ -3,7 +3,7 @@ const App = {
         productName: "Acanthocereus tetragonus Fairy Castle Cactus",
         productDescription: 'This plant comes in a 3.5 inch pot. You will receive a similar plant in size and shape to the ones in the pictures. Our plants are hand-picked and carefully selected to bring you the best quality possible.',
         productImage: 'images/cactus.PNG',
-        altText: 'cactus',
+        altImageText: 'cactus',
         link: 'https://planetdesert.com/',
         productPrice: 1099,
         finalPrice: 1099,
@@ -87,7 +87,9 @@ const App = {
         },
         addProduct() {
             this.cart = Number(this.cart) + 1
-            this.finalPrice = this.productPrice * this.cart
+            if (this.cart <= 10) {
+                this.finalPrice = this.productPrice * this.cart
+            }
         },
         removeProduct() {
             if (this.cart) {
@@ -96,7 +98,7 @@ const App = {
             }
         },
         checkCart() {
-            if (!this.cart.match(/^\d{1,2}\b/)) {
+            if (!this.cart.match(/^([0-9]?|10)$/)) {
                 this.cart = 0
             } else {
                 this.finalPrice = this.productPrice * this.cart
