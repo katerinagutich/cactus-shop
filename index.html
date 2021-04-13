@@ -13,25 +13,24 @@
     <div class="product">
 
         <div class="product-images">
-            <img :src="productImage" :alt="altImageText" class="main-product-image">
+            <img :src="mainImage" :alt="altImageText" class="main-product-image">
             <div class="secondary-product-image">
-                <img src="images/cactus2.jpeg" :alt="altImageText">
-                <img src="images/cactus3.jpg" :alt="altImageText">
-                <img src="images/cactus4.jpg" :alt="altImageText">
-                <img src="images/cactus.PNG" :alt="altImageText">
+                <img v-for="image in secondaryImages"
+                     :src="image"
+                     @mouseover="changeMainImage(image)" :alt="altImageText">
             </div>
         </div>
 
         <div class="product-info">
 
             <h1>{{productName}}</h1>
-            <p class="product-price">$ {{finalPrice / 100}}
-                <span v-if="additionalCost"> + $ {{additionalCost}}.00</span>
+            <p class="product-price">$ {{basicCost / 100}}
+                <span v-if="extraCost"> + $ {{extraCost}}.00</span>
                 <span v-if="selectedCards.length >= 5" class="discount"> - $ 1.00 as a discount :)</span>
             </p>
 
-            <p class="product-stock" v-if="stockQuantity > 20">In Stock</p>
-            <p class="product-stock" v-else-if="stockQuantity > 10">Almost sold out!</p>
+            <p class="product-stock" v-if="stock > 20">In Stock</p>
+            <p class="product-stock" v-else-if="stock > 10">Almost sold out!</p>
             <p class="product-stock" v-else>Out of Stock</p>
 
             <p>{{productDescription}}</p>
@@ -44,9 +43,13 @@
                 <span v-for="name in selectedCards">{{name}}</span>
             </p>
             <div class="cards">
-                <div v-for="(card, i) in cards" @click="addCard(i)" :key="card" >
+                <div v-for="card in cards"
+                     @click="addCard(card)"
+                     :key="card" >
                     <div>
-                        <img :src="card.image" alt="card" :class="cards[i].selected ? 'selected' : 'unselected'">
+                        <img :src="card.image"
+                             alt="card"
+                             :class="card.selected ? 'selected' : 'unselected'">
                     </div>
                 </div>
             </div>
@@ -54,14 +57,19 @@
 
             <!-- Shopping Cart -->
 
-            <p v-if="cart <= 10" class="cart-heading">You can order up to 10 cacti, go ahead:</p>
-            <p v-if="cart > 10" class="cart-heading cart-heading-warning">Sorry, that's too much, please order up to 10 cacti:</p>
+            <p v-if="unitCount > 10" class="cart-heading cart-heading-warning">Sorry, that's too much, please order up to 10 cacti:</p>
+            <p v-else class="cart-heading">You can order up to 10 cacti, go ahead:</p>
             <div class="cart">
-                <input type="text" v-model="cart" @change="checkCart()">
-                <button class="cart-remove" @click="removeProduct()">-</button>
-                <button class="cart-add" @click="addProduct()">+</button>
+                <input type="text" v-model="unitCount" @change="checkUnitCount()">
+                <button class="cart-remove" @click="removeItem()">-</button>
+                <button class="cart-add" @click="addItem()">+</button>
             </div>
-            <a class="btn" href="#" @click="">Add to cart</a>
+            <a class="btn"
+               href="#"
+               @click="addToCart()"
+               :disabled="!stock">
+                Add to cart <span> ( {{cart}} items added )</span>
+            </a>
 
         </div>
     </div>

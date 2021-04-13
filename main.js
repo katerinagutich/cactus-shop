@@ -2,16 +2,16 @@ const App = {
     data: () => ({
         productName: "Acanthocereus tetragonus Fairy Castle Cactus",
         productDescription: 'This plant comes in a 3.5 inch pot. You will receive a similar plant in size and shape to the ones in the pictures. Our plants are hand-picked and carefully selected to bring you the best quality possible.',
-        productImage: 'images/cactus.PNG',
+        mainImage: 'images/cactus.PNG',
+        secondaryImages: ['images/cactus2.JPEG', 'images/cactus3.JPG', 'images/cactus4.jpg', 'images/cactus.PNG'],
         altImageText: 'cactus',
-        link: 'https://planetdesert.com/',
-        productPrice: 1099,
-        finalPrice: 1099,
-        additionalCost: 0,
-        stockQuantity: 14,
-        cart: 1,
+        stock: 14,
+        cart: 0,
+        unitPrice: 1099,
+        unitCount: 1,
+        basicCost: 1099,
+        extraCost: 0,
         selectedCards: [],
-        details: ['Minimum avg. temperature: 10°C', 'Origin: Garden origin', 'Sun exposure: bright light, and some direct sun, but avoid direct afternoon sun in summer'],
         cards: [
             {
                 image: "images/birthday.PNG",
@@ -63,48 +63,61 @@ const App = {
                 selected: false,
                 name: ""
             }
-        ]
+        ],
+        details: ['Minimum avg. temperature: 10°C', 'Origin: Garden origin', 'Sun exposure: bright light, and some direct sun, but avoid direct afternoon sun in summer'],
     }),
     methods: {
-        addCard(i) {
-            this.cards[i].selected = !this.cards[i].selected;
-            if (i === this.cards.length-1) {
-                this.additionalCost = 0;
+        addCard(card) {
+            card.selected = !card.selected;
+            if (!card.name) {
+                this.extraCost = 0;
                 this.selectedCards = []
-                for (let j = 0; j < this.cards.length-1; j++) {
-                    this.cards[j].selected = false;
+                for (let i = 0; i < this.cards.length-1; i++) {
+                    this.cards[i].selected = false;
                 }
-            } else if (this.cards[i].selected) {
-                this.additionalCost += 1
-                this.selectedCards.push(this.cards[i].name)
+            } else if (card.selected) {
+                this.extraCost += 1
+                this.selectedCards.push(card.name)
                 this.cards[this.cards.length-1].selected = false
             } else {
-                this.additionalCost -= 1
-                if (this.cards[i].name) {
-                    this.selectedCards.splice(this.selectedCards.indexOf(this.cards[i].name), 1)
+                this.extraCost -= 1
+                if (card.name) {
+                    this.selectedCards.splice(this.selectedCards.indexOf(card.name), 1)
                 }
             }
         },
-        addProduct() {
-            this.cart = Number(this.cart) + 1
-            if (this.cart <= 10) {
-                this.finalPrice = this.productPrice * this.cart
+        addItem() {
+            this.unitCount = Number(this.unitCount) + 1
+            if (this.unitCount <= 10) {
+                this.calcBasicPrice()
             }
         },
-        removeProduct() {
-            if (this.cart) {
-                this.cart = Number(this.cart) - 1
-                this.finalPrice = this.productPrice * this.cart
+        removeItem() {
+            if (this.unitCount) {
+                this.unitCount = Number(this.unitCount) - 1
+                this.calcBasicPrice()
             }
         },
-        checkCart() {
-            if (!this.cart.match(/^([0-9]?|10)$/)) {
-                this.cart = 0
+        checkUnitCount() {
+            if (!this.unitCount.match(/^([0-9]?|10)$/)) {
+                this.unitCount = 1
+                this.calcBasicPrice()
             } else {
-                this.finalPrice = this.productPrice * this.cart
+                this.calcBasicPrice()
             }
+        },
+        changeMainImage(image) {
+            this.mainImage = image
         }
     },
+    computed: {
+        calcBasicPrice() {
+            return this.basicCost = this.unitPrice * Number(this.unitCount)
+        },
+        addToCart() {
+            return this.cart = Number(this.unitCount) + this.selectedCards.length
+        }
+    }
 }
 
 Vue.createApp(App).mount('#app')
