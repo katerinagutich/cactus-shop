@@ -12,17 +12,29 @@ body {
 }
 .product {
     display: flex;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 50px auto;
 }
-.product-image {
+.product-images {
     width: 50%;
     padding: 40px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
-.product-image img {
+.main-product-image  {
+    display: block;
     width: 100%;
+    box-shadow: 0 0 15px #949393;
+    margin-bottom: 20px;
+}
+.secondary-product-image {
+    display: flex;
+    justify-content: space-between;
+}
+.secondary-product-image img {
+    width: 20%;
+}
+.secondary-product-image img:hover {
     box-shadow: 0 0 15px #949393;
 }
 .product-info {
