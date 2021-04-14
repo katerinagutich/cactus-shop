@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <title>Pick your Cactus</title>
     <link rel="stylesheet/less" type="text/css" href="styles.less">
     <script src="less.js"></script>
 </head>
 <body>
 
-<div id="app" v-cloak>
+<div id="shop" v-cloak>
 
     <div class="product">
+
+        <!--  Product Images  -->
 
         <div class="product-images">
             <img :src="mainImage" :alt="altImageText" class="main-product-image">
@@ -21,7 +24,7 @@
             </div>
         </div>
 
-        <div class="product-info">
+        <div class="purchase-info">
 
             <h1>{{productName}}</h1>
             <p class="product-price">$ {{basicCost / 100}}
@@ -37,7 +40,7 @@
             <hr>
 
 
-            <!-- Greeting Cards -->
+            <!--  Greeting Cards  -->
 
             <p class="cards-heading">Add your Greeting Card:
                 <span v-for="name in selectedCards">{{name}}</span>
@@ -45,7 +48,7 @@
             <div class="cards">
                 <div v-for="card in cards"
                      @click="addCard(card)"
-                     :key="card" >
+                     :key="card">
                     <div>
                         <img :src="card.image"
                              alt="card"
@@ -55,38 +58,30 @@
             </div>
 
 
-            <!-- Shopping Cart -->
+            <!--  Shopping Cart  -->
 
-            <p v-if="unitCount > 10" class="cart-heading cart-heading-warning">Sorry, that's too much, please order up to 10 cacti:</p>
+            <p v-if="unitCount > 10" class="cart-heading cart-heading-warning">Sorry, that's too many, please order up
+                to 10 cacti:</p>
             <p v-else class="cart-heading">You can order up to 10 cacti, go ahead:</p>
             <div class="cart">
                 <input type="text" v-model="unitCount" @change="checkUnitCount()">
-                <button class="cart-remove" @click="removeItem()">-</button>
-                <button class="cart-add" @click="addItem()">+</button>
+                <button class="cart-remove" @click="removeUnit()">-</button>
+                <button class="cart-add" @click="addUnit()">+</button>
             </div>
             <button class="btn"
                     @click="addToCart()"
-                    :disabled="!stock"
-                    :class="{disabled: !stock}">
+                    :disabled="!stock || unitCount > 10"
+                    :class="{disabled: !stock || unitCount > 10}">
                 <span v-if="!stock">Out of stock</span>
                 <span v-else>Add to cart ( {{cart}} items added )</span>
             </button>
-
         </div>
     </div>
 
-
-    <!-- Product Description -->
-
-    <div class="product-description">
-        <h2>{{productName}}</h2>
-        <p>
-            "Fairytale castle", Fairy castle" or "Green finger" cactus is the evocative name by which this common succulent plant is marketed and refers to the numerous vertical stems of different heights that resemble spires and turrets. Fairy Castle Cactus grows well on its own roots and will form quite large clumps of several hundreds offsets, if given time and grown properly. Growing fairy castle cactus inside your home is an easy beginning gardener project. It needs plenty of space for its roots. Use pot with good drainage. Bright, warm window seat in summer enjoy being outdoors, but slowly get used to the sun. Place the little cactus in a bright sunny location that is away from drafts or air conditioning.
-        </p>
-        <ul class="list">
-            <li v-for="detail in details">{{ detail }}</li>
-        </ul>
-    </div>
+    <p class="links">Some of the information has been found at
+        <a href="https://www.cactiguide.com/">cactiguide.com</a>, and
+        <a href="https://cactusway.com/">cactus-art.biz</a>
+    </p>
 
 </div>
 

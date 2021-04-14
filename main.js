@@ -1,4 +1,4 @@
-const App = {
+const shop = Vue.createApp({
     data: () => ({
         productName: "Acanthocereus tetragonus Fairy Castle Cactus",
         productDescription: 'This plant comes in a 3.5 inch pot. You will receive a similar plant in size and shape to the ones in the pictures. Our plants are hand-picked and carefully selected to bring you the best quality possible.',
@@ -64,7 +64,6 @@ const App = {
                 name: ""
             }
         ],
-        details: ['Minimum avg. temperature: 10°C', 'Origin: Garden origin', 'Sun exposure: bright light, and some direct sun, but avoid direct afternoon sun in summer'],
     }),
     methods: {
         addCard(card) {
@@ -72,13 +71,13 @@ const App = {
             if (!card.name) {
                 this.extraCost = 0;
                 this.selectedCards = []
-                for (let i = 0; i < this.cards.length-1; i++) {
+                for (let i = 0; i < this.cards.length - 1; i++) {
                     this.cards[i].selected = false;
                 }
             } else if (card.selected) {
                 this.extraCost += 1
                 this.selectedCards.push(card.name)
-                this.cards[this.cards.length-1].selected = false
+                this.cards[this.cards.length - 1].selected = false
             } else {
                 this.extraCost -= 1
                 if (card.name) {
@@ -86,41 +85,41 @@ const App = {
                 }
             }
         },
-        addItem() {
+        addUnit() {
             this.unitCount = Number(this.unitCount) + 1
             if (this.unitCount <= 10) {
-                this.calcBasicPrice()
+                this.calcBasicCost()
             }
         },
-        removeItem() {
+        removeUnit() {
             if (this.unitCount) {
                 this.unitCount = Number(this.unitCount) - 1
-                this.calcBasicPrice()
+                this.calcBasicCost()
             }
         },
         checkUnitCount() {
             if (!this.unitCount.match(/^([0-9]?|10)$/)) {
                 this.unitCount = 1
-                this.calcBasicPrice()
+                this.calcBasicCost()
             } else {
-                this.calcBasicPrice()
+                this.calcBasicCost()
             }
         },
         changeMainImage(image) {
             this.mainImage = image
-        }
-    },
-    computed: {
-        calcBasicPrice() {
-            return this.basicCost = this.unitPrice * Number(this.unitCount)
+        },
+        calcBasicCost() {
+            this.basicCost = this.unitPrice * Number(this.unitCount)
         },
         addToCart() {
-            return this.cart = Number(this.unitCount) + this.selectedCards.length
+            this.cart = Number(this.unitCount) + this.selectedCards.length
         }
-    }
-}
+    },
+    computed: {}
+});
 
-Vue.createApp(App).mount('#app')
+
+shop.mount('#shop');
 
 
 

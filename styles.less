@@ -15,10 +15,12 @@ body {
     color: #282828;
     margin: 0;
 }
-.product {
-    display: flex;
+#shop {
     max-width: 1300px;
     margin: 50px auto;
+}
+.product {
+    display: flex;
 }
 .product-images {
     width: 50%;
@@ -42,11 +44,11 @@ body {
         }
     }
 }
-.product-info {
+.purchase-info {
     width: 50%;
 }
 .product-price {
-    font: bold 25px "Helvetica Neue";
+    font: bold 23px "Helvetica Neue";
     margin-bottom: 0;
 }
 .discount {
@@ -55,13 +57,13 @@ body {
     vertical-align: middle;
 }
 .product-stock {
-    font: 18px "Helvetica Neue";
     color: @orange;
+    font: 20px "Helvetica Neue";
     margin: 5px 0;
 }
-.product-description {
-    margin: 30px auto 0;
-    max-width: 1200px;
+hr {
+    height: 3px;
+    background-color: #000;
 }
 .cards {
     display: flex;
@@ -104,7 +106,6 @@ body {
 }
 .cart-heading {
     font: 17px 'Courier New', sans-serif;
-    height: auto;
     margin-bottom: 5px;
 }
 .cart-heading-warning {
@@ -146,7 +147,23 @@ body {
 .disabled {
     background-color: #fdf9f5;
 }
+.product-description {
+    p {
+        font-style: italic;
+    }
+}
 .list {
     list-style: none;
     padding: 0;
+}
+.links {
+    color: #949393;
+    font-style: italic;
+    a {
+        text-decoration: none;
+        color: @orange;
+        &:hover {
+            color: #000;
+        }
+    }
 }
