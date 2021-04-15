@@ -4,8 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>Pick your Cactus</title>
-    <link rel="stylesheet/less" type="text/css" href="styles.less">
-    <script src="less.js"></script>
+    <link rel="stylesheet/less" type="text/css" href="styles.less"/>
+    <script src="less.js" type="text/javascript"></script>
+    <script src="main.js"></script>
 </head>
 <body>
 
@@ -16,17 +17,17 @@
         <!--  Product Images  -->
 
         <div class="product-images">
-            <img :src="mainImage" :alt="altImageText" class="main-product-image">
-            <div class="secondary-product-image">
-                <img v-for="image in secondaryImages"
-                     :src="image"
-                     @mouseover="changeMainImage(image)" :alt="altImageText">
-            </div>
+            <main-image :main-image="mainImage" :alt-text="altText"></main-image>
+            <secondary-image
+                    :secondary-images="secondaryImages"
+                    :change-main-image="changeMainImage"
+                    :alt-text="altText"
+            ></secondary-image>
         </div>
 
         <div class="purchase-info">
 
-            <h1>{{productName}}</h1>
+            <product-name :product-name="productName"></product-name>
             <p class="product-price">$ {{basicCost / 100}}
                 <span v-if="extraCost"> + $ {{extraCost}}.00</span>
                 <span v-if="selectedCards.length >= 5" class="discount"> - $ 1.00 as a discount :)</span>
@@ -79,9 +80,10 @@
     </div>
 
     <p class="links">Some of the information has been found at
-        <a href="https://www.cactiguide.com/">cactiguide.com</a>, and
-        <a href="https://cactusway.com/">cactus-art.biz</a>
+        <a target="_blank" href="https://www.cactiguide.com/">cactiguide.com</a>, and
+        <a target="_blank" href="https://cactusway.com/">cactus-art.biz</a>
     </p>
+
 
 </div>
 

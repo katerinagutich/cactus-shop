@@ -4,7 +4,7 @@ const shop = Vue.createApp({
         productDescription: 'This plant comes in a 3.5 inch pot. You will receive a similar plant in size and shape to the ones in the pictures. Our plants are hand-picked and carefully selected to bring you the best quality possible.',
         mainImage: 'images/cactus.PNG',
         secondaryImages: ['images/cactus2.jpeg', 'images/cactus3.jpg', 'images/cactus4.jpg', 'images/cactus.PNG'],
-        altImageText: 'cactus',
+        altText: 'cactus',
         stock: 10,
         cart: 0,
         unitPrice: 1099,
@@ -117,6 +117,36 @@ const shop = Vue.createApp({
     },
     computed: {}
 });
+
+shop.component('product-name', {
+    props: ['productName'],
+    template: `
+        <h1>{{productName}}</h1>
+    `,
+})
+
+shop.component('main-image', {
+    props: ['mainImage', 'altText'],
+    template: `
+        <img :src="mainImage" :alt="altText" class="main-product-image">
+    `,
+})
+
+shop.component('secondary-image', {
+    props: {
+        secondaryImages: Array,
+        changeMainImage: Function,
+        altText: String
+    },
+    template: `
+        <div class="secondary-product-image">
+                <img v-for="image in secondaryImages"
+                     :src="image"
+                     @mouseover="changeMainImage(image)"
+                     :alt="altText">
+            </div>
+    `,
+})
 
 
 shop.mount('#shop');
