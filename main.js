@@ -144,7 +144,7 @@ shop.component('secondary-image', {
                      :src="image"
                      @mouseover="changeMainImage(image)"
                      :alt="altText">
-            </div>
+        </div>
     `,
 })
 
