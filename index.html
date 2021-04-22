@@ -43,18 +43,16 @@
 
             <!--  Greeting Cards  -->
 
-            <p class="cards-heading">Add your Greeting Card:
+            <p class="cards-heading">Add your Greeting Card:<br>
                 <span v-for="name in selectedCards">{{name}}</span>
             </p>
             <div class="cards">
                 <div v-for="card in cards"
                      @click="addCard(card)"
                      :key="card">
-                    <div>
-                        <img :src="card.image"
-                             alt="card"
-                             :class="card.selected ? 'selected' : 'unselected'">
-                    </div>
+                    <img :src="card.image"
+                         alt="card"
+                         :class="card.selected ? 'selected' : 'unselected'">
                 </div>
             </div>
 

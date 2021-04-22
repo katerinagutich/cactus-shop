@@ -14,6 +14,7 @@ body {
     font-size: 18px;
     color: #282828;
     margin: 0;
+    padding: 40px;
 }
 #shop {
     max-width: 1300px;
@@ -24,7 +25,8 @@ body {
 }
 .product-images {
     width: 50%;
-    padding: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
     display: flex;
     flex-direction: column;
 }
@@ -68,7 +70,7 @@ hr {
 .cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     img {
         margin: 7px;
         transition: .5s;
@@ -86,7 +88,7 @@ hr {
 }
 .cards-heading {
     font: 17px 'Courier New', sans-serif;
-    height: 50px;
+    height: 55px;
     span {
         font-weight: 600;
     }
@@ -158,13 +160,102 @@ hr {
     padding: 0;
 }
 .links {
+    font-size: 14px;
     color: #949393;
-    font-style: italic;
     a {
         text-decoration: none;
+        font-weight: 600;
         color: @orange;
         &:hover {
             color: #000;
         }
+    }
+}
+
+@media (max-width: 1200px) {
+    .product {
+        display: block;
+    }
+    .product-images {
+        width: 100%;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+    .main-product-image  {
+        width: 80%;
+    }
+    .secondary-product-image {
+        width: 80%;
+        img {
+            width: 22%;
+        }
+    }
+    .purchase-info {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .cart-heading {
+        text-align: left;
+    }
+    .cart-heading-warning {
+        text-align: left;
+    }
+    .cards {
+        div {
+            width: 20%;
+            img {
+                width: 75%;
+            }
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    #shop {
+        margin: 0 auto;
+    }
+    .product-images {
+        width: 100%;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+    .main-product-image  {
+        width: 90%;
+    }
+    .secondary-product-image {
+        width: 90%;
+    }
+    .cards-heading {
+        height: 65px;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        padding: 10px;
+    }
+    #shop {
+        margin: 10px auto;
+    }
+    .product-images {
+        width: 100%;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+    .main-product-image  {
+        width: 95%;
+    }
+    .secondary-product-image {
+        width: 95%;
+    }
+    .cards-heading {
+        height: 70px;
     }
 }
