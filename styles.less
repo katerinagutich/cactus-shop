@@ -71,12 +71,14 @@ hr {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    img {
-        margin: 7px;
-        transition: .5s;
-        transition-property: box-shadow;
-        &:hover {
-            .shadow(15px);
+    div {
+        img {
+            margin: 7px;
+            transition: .5s;
+            transition-property: box-shadow;
+            &:hover {
+                .shadow(15px);
+            }
         }
     }
 }
@@ -234,6 +236,17 @@ hr {
     .cards-heading {
         height: 65px;
     }
+    .cards {
+        div {
+            img {
+                width: 95%;
+                margin: 0 7px;
+                &:hover {
+                    .shadow(10px);
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 500px) {
@@ -257,11 +270,6 @@ hr {
         width: 95%;
     }
     .cards-heading {
-        height: 70px;
-    }
-    .cards {
-        img {
-            width: 95%;
-        }
+        height: 80px;
     }
 }
